@@ -10,6 +10,10 @@
   "bin/*": {
     "type": "bin"
   },
+  "app/commands/*.rb": {
+    "type": "command",
+    "alternate": "spec/commands/{}_spec.rb"
+  },
   "db/migrate/*.rb": {
     "type": "migration",
     "alternate": "db/schema.rb"
