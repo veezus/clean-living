@@ -1,0 +1,21 @@
+{
+  "lib/*.rb": {
+    "type": "lib",
+    "alternate": "spec/lib/{}_spec.rb"
+  },
+  "app/models/*.rb": {
+    "type": "model",
+    "alternate": "spec/models/{}_spec.rb"
+  },
+  "db/migrate/*.rb": {
+    "type": "migration",
+    "alternate": "db/schema.rb"
+  },
+  "config/application.rb": {
+    "type": "root"
+  },
+  "spec/*_spec.rb": {
+    "type": "spec",
+    "alternate": "{}.rb"
+  }
+}
