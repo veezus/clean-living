@@ -10,6 +10,9 @@ gem 'standalone_migrations'
 # Time parsing
 gem 'chronic'
 
+# Command line tools
+gem 'commander'
+
 group :test, :development do
   gem 'byebug'
   gem 'factory_bot'

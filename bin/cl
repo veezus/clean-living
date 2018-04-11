@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'commander'
+
+# debugger
+# require File.join File.dirname(__FILE__), '..', 'config', 'application.rb'
+# require '../config/application.rb'
+
+class CleanLiving
+  include Commander::Methods
+  # include whatever modules you need
+
+  def run
+    program :name, 'clean-living'
+    program :version, '0.0.1'
+    program :description, 'Tracks activites related to clean living'
+
+    command :help do |c|
+      c.syntax = 'clean-living help'
+      c.summary = 'Shows a help message'
+      c.description = ''
+      c.action do |args, options|
+        puts "Called help with #{args.join(' ')}"
+        # Do something or c.when_called Clean-living::Commands::New
+      end
+    end
+
+    command :new do |c|
+      c.syntax = 'clean-living new [options]'
+      c.summary = ''
+      c.description = ''
+      c.example 'description', 'command example'
+      c.option '--some-switch', 'Some switch that does something'
+      c.action do |args, options|
+        puts "Called new with #{args.join(' ')}"
+        # Do something or c.when_called Clean-living::Commands::New
+      end
+    end
+
+    command :complete do |c|
+      c.syntax = 'clean-living complete [options]'
+      c.summary = ''
+      c.description = ''
+      c.example 'description', 'command example'
+      c.option '--some-switch', 'Some switch that does something'
+      c.action do |args, options|
+        puts "Called complete with #{args.join(' ')}"
+        # Do something or c.when_called Clean-living::Commands::Complete
+      end
+    end
+
+    run!
+  end
+end
+
+CleanLiving.new.run

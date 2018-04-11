@@ -7,6 +7,9 @@
     "type": "model",
     "alternate": "spec/models/{}_spec.rb"
   },
+  "bin/*": {
+    "type": "bin"
+  },
   "db/migrate/*.rb": {
     "type": "migration",
     "alternate": "db/schema.rb"
