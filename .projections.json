@@ -11,11 +11,18 @@
     "type": "migration",
     "alternate": "db/schema.rb"
   },
+  "spec/factories/*_factory.rb": {
+    "type": "factory",
+    "alternate": "app/models/{}.rb"
+  },
   "config/application.rb": {
     "type": "root"
   },
   "spec/*_spec.rb": {
     "type": "spec",
     "alternate": "{}.rb"
+  },
+  "spec/spec_helper.rb": {
+    "type": "spec"
   }
 }
