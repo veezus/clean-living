@@ -33,6 +33,14 @@ class CleanLiving
       end
     end
 
+    command :list do |c|
+      c.syntax = 'cl list'
+      c.summary = 'List all tasks'
+      c.action do |args, options|
+        ::ListCommand.new(args, options).run
+      end
+    end
+
     command :complete do |c|
       c.syntax = 'cl complete [options]'
       c.summary = ''
