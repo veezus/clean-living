@@ -26,11 +26,8 @@ class CleanLiving
     alias_command :help, :''
 
     command :new do |c|
-      c.syntax = 'cl new task-name'
-      c.summary = ''
-      c.description = ''
-      c.example 'description', 'command example'
-      c.option '--some-switch', 'Some switch that does something'
+      c.syntax = 'cl new <task name>'
+      c.summary = 'Creates and stores a new task with the specificed name'
       c.action do |args, options|
         ::NewCommand.new(args, options).run
       end
@@ -40,8 +37,6 @@ class CleanLiving
       c.syntax = 'cl complete [options]'
       c.summary = ''
       c.description = ''
-      c.example 'description', 'command example'
-      c.option '--some-switch', 'Some switch that does something'
       c.action do |args, options|
         # Do something or c.when_called Clean-living::Commands::Complete
       end
