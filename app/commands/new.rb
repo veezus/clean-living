@@ -2,7 +2,7 @@ class NewCommand
   attr_accessor :task
   attr_accessor :name
 
-  def initialize args, options=Commander::Command::Options.new
+  def initialize args=[], options=Commander::Command::Options.new
     self.task = Task.new name: args.join(' ')
   end
 

@@ -16,14 +16,13 @@ class CleanLiving
     program :description, 'Tracks activities related to clean living'
 
     command '' do |c|
-      c.syntax = 'cl help'
-      c.summary = 'Shows a help message'
+      c.syntax = 'cl'
+      c.summary = 'Enters an interactive shell'
       c.description = ''
       c.action do |args, options|
-        # Do something or c.when_called Clean-living::Commands::New
+        ::InteractorCommand.new.run
       end
     end
-    alias_command :help, :''
 
     command :new do |c|
       c.syntax = 'cl new <task name>'
