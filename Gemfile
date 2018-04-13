@@ -12,7 +12,7 @@ gem 'chronic'
 
 # Command line tools
 gem 'commander'
-gem 'curses'
+gem 'tty'
 
 group :test, :development do
   gem 'byebug'

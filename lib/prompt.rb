@@ -1,23 +1,13 @@
-require 'curses'
-
 class Prompt
-  include Curses
-
-  def display
-    setpos line, 0
-    addstr prompt.ljust cols
-    setpos line, col
-    refresh
-  end
+  include TTY::Cursor
+  include Screen
 
   def query
-    display
-    response = getstr
-    display
-    return response
+    print move_to 0, row
+    tty.ask prompt
   end
 
-  def prompt; "Prompt: "; end
-  def line; lines - 1; end
-  def col; prompt.length; end
+  def prompt; "? " end
+  def tty; TTY::Prompt.new end
+  def row; rows - 1 end
 end

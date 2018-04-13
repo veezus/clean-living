@@ -1,11 +1,17 @@
-require 'curses'
-
 class StatusBar
-  include Curses
+  include TTY::Cursor
+  include Screen
+  include Styles
 
   def display
-    setpos lines - 2, 0
-    addstr "Total tasks: #{Task.count}"
-    refresh
+    print move_to 0, row
+    print clear_line
+    print pastel.black.on_bright_white status_text
   end
+
+  def status_text
+    "Total number of tasks: #{Task.count} ".ljust columns
+  end
+
+  def row; rows - 2 end
 end
