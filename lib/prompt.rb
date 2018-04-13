@@ -4,6 +4,7 @@ class Prompt
 
   def query
     print move_to 0, row
+    print clear_line
     tty.ask prompt
   end
 

@@ -25,6 +25,8 @@ class InteractorCommand
       status_bar.display
       query = prompt.query
       case query
+      when 'list'
+        ListCommand.new(self).run
       when 'new'
         NewCommand.new(self).run
       else
@@ -33,6 +35,8 @@ class InteractorCommand
     end
   end
 
+  def buffer(message) output_window.buffer message end
   def error(message) output_window.error message end
+  def say(message) output_window.print_line message end
   def success(message) output_window.success message end
 end

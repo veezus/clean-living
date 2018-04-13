@@ -31,6 +31,10 @@ class OutputWindow
     end
   end
 
+  def buffer string
+    lines << string
+  end
+
   def print_line string
     lines << string
     display
@@ -39,8 +43,17 @@ class OutputWindow
   def print_lines
     print move_to left, top
     lines.last(bottom).each do |line|
-      puts line
+      puts trim line
     end
+  end
+
+  # def print_lines strings
+  #   self.lines = lines | strings
+  #   display
+  # end
+
+  def trim string
+    string && string[0...right]
   end
 
   def bottom; rows - 2 end

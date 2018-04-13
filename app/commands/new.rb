@@ -1,10 +1,9 @@
-class NewCommand
+class NewCommand < BaseCommand
   attr_accessor :task
-  attr_accessor :interactor
 
   def initialize interactor
+    super
     self.task = Task.new
-    self.interactor = interactor
   end
 
   def prompt_for_due_date
