@@ -1,6 +1,7 @@
 class OutputWindow
   include TTY::Cursor
   include Screen
+  include Styles
 
   attr_accessor :lines
 
@@ -16,6 +17,18 @@ class OutputWindow
   def clear
     print move_to left, top
     print clear_lines bottom, :down
+  end
+
+  def error lines
+    lines.each do |line|
+      print_line pastel.red line
+    end
+  end
+
+  def success *lines
+    lines.each do |line|
+      print_line pastel.green line
+    end
   end
 
   def print_line string

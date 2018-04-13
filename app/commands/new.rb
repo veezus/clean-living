@@ -1,38 +1,38 @@
 class NewCommand
   attr_accessor :task
-  attr_accessor :name
+  attr_accessor :interactor
 
-  def initialize args=[], options=Commander::Command::Options.new
-    self.task = Task.new name: args.join(' ')
+  def initialize interactor
+    self.task = Task.new
+    self.interactor = interactor
   end
 
   def prompt_for_due_date
-    return unless task.valid?
-    task.chronic_due = ask "When should it be done by?"
+    task.chronic_due = interactor.ask "When should it be done by?"
     if task.chronic_due.present? && task.due_at.blank?
       prompt_for_due_date
     end
   end
 
   def prompt_for_name
-    return unless name.blank?
-    task.name = ask "What needs to be done?"
+    task.name = interactor.ask "What needs to be done?"
   end
 
-  def print_error_messages
-    HighLine.say HighLine.color \
-      "There was an error saving that task:\n#{ErrorFormatter.console(task.errors)}", :red
+  def print_error_message
+    message = \
+      "There was an error saving that task:\n#{ErrorFormatter.console(task.errors)}"
+    interactor.error message.split "\n"
   end
 
   def print_success_message
-    say %q(<%= color "Successfully created task.", :green %>)
+    interactor.success "Successfully created task."
   end
 
   def save_and_print_status
     if task.save
       print_success_message
     else
-      print_error_messages
+      print_error_message
     end
   end
 

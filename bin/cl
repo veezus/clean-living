@@ -8,7 +8,6 @@ Bundler.require
 
 class CleanLiving
   include Commander::Methods
-  # include whatever modules you need
 
   def run
     program :name, 'clean-living'
@@ -21,31 +20,6 @@ class CleanLiving
       c.description = ''
       c.action do |args, options|
         ::InteractorCommand.new.run
-      end
-    end
-
-    command :new do |c|
-      c.syntax = 'cl new <task name>'
-      c.summary = 'Creates and stores a new task with the specificed name'
-      c.action do |args, options|
-        ::NewCommand.new(args, options).run
-      end
-    end
-
-    command :list do |c|
-      c.syntax = 'cl list'
-      c.summary = 'List all tasks'
-      c.action do |args, options|
-        ::ListCommand.new(args, options).run
-      end
-    end
-
-    command :complete do |c|
-      c.syntax = 'cl complete [options]'
-      c.summary = ''
-      c.description = ''
-      c.action do |args, options|
-        # Do something or c.when_called Clean-living::Commands::Complete
       end
     end
 
