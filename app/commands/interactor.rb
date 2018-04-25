@@ -1,5 +1,6 @@
 class InteractorCommand
   attr_accessor :output_window, :prompt, :status_bar
+  attr_accessor :command, :arguments
 
   def initialize
     self.output_window = OutputWindow.new
@@ -8,29 +9,39 @@ class InteractorCommand
   end
 
   def ask string
-    output_window.print_line string
+    say string
     status_bar.display
     prompt.query
   end
 
   def refresh
+    TTY::Cursor.clear_screen
     output_window.display
     status_bar.display
   end
 
+  def parse! query
+    return unless query.present?
+
+    parts = query.split(' ')
+    self.command = parts.shift
+    self.arguments = parts
+  end
+
   def run
     loop do
-      TTY::Cursor.clear_screen
-      output_window.display
-      status_bar.display
-      query = prompt.query
-      case query
+      refresh
+      parse! prompt.query
+
+      case command
       when 'list'
         ListCommand.new(self).run
       when 'new'
         NewCommand.new(self).run
+      when 'complete'
+        CompleteCommand.new(self).run
       else
-        output_window.print_line "Unknown command: #{query}"
+        say "Unknown command: #{command}"
       end
     end
   end

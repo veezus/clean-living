@@ -20,6 +20,7 @@ class OutputWindow
   end
 
   def error lines
+    lines = Array(lines)
     lines.each do |line|
       print_line pastel.red line
     end
