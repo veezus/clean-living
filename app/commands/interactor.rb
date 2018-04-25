@@ -40,6 +40,8 @@ class InteractorCommand
         NewCommand.new(self).run
       when 'complete'
         CompleteCommand.new(self).run
+      when 'exit', 'quit'
+        say 'Goodbye!' and break
       else
         say "Unknown command: #{command}"
       end
