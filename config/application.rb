@@ -17,6 +17,10 @@ Dir[File.join(root, '..', 'lib', '*.rb')].each do |file|
   require file
 end
 
+Dir[File.join(root, '..', 'app', 'commands', 'ancestors', '*.rb')].each do |file|
+  require file
+end
+
 Dir[File.join(root, '..', 'app', 'commands', '*.rb')].each do |file|
   require file
 end
