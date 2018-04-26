@@ -39,6 +39,12 @@ module ListRenderer
   end
 
   def render
-    table.render :basic
+    table.render do |renderer|
+      renderer.border do
+        mid '-'
+        mid_mid '  '
+        center '  '
+      end
+    end
   end
 end
