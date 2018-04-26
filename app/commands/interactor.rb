@@ -35,7 +35,14 @@ class InteractorCommand
 
       case command
       when 'list'
-        ListCommand.new(self).run
+        clear_buffer
+        if %w(c completed).include? arguments.first
+          CompletedListCommand.new(self).run
+        elsif %w(i incomplete).include? arguments.first
+          IncompleteListCommand.new(self).run
+        else
+          ListCommand.new(self).run
+        end
       when 'new'
         NewCommand.new(self).run
       when 'complete'
@@ -51,6 +58,7 @@ class InteractorCommand
   end
 
   def buffer(message) output_window.buffer message end
+  def clear_buffer; output_window.clear_buffer end
   def error(message) output_window.error message end
   def say(message) output_window.print_line message end
   def success(message) output_window.success message end

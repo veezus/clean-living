@@ -3,7 +3,9 @@ class ListCommand < BaseCommand
   include ListRenderer
 
   def run
-    interactor.buffer render.split "\n"
+    render.split("\n").each do |row|
+      interactor.buffer row
+    end
   end
 
   def tasks

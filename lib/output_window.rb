@@ -6,15 +6,24 @@ class OutputWindow
   attr_accessor :lines
 
   def initialize
+    initialize_lines
+  end
+
+  def initialize_lines
     self.lines = Array.new(bottom, '')
   end
 
   def display
-    clear
+    clear_screen
     print_lines
   end
 
-  def clear
+  def clear_buffer
+    lines.clear
+    initialize_lines
+  end
+
+  def clear_screen
     print move_to left, top
     print clear_lines bottom, :down
   end
