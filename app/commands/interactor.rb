@@ -34,7 +34,7 @@ class InteractorCommand
       parse! prompt.query
 
       case command
-      when 'list'
+      when 'l', 'list'
         clear_buffer
         if %w(c completed).include? arguments.first
           CompletedListCommand.new(self).run
@@ -43,11 +43,11 @@ class InteractorCommand
         else
           ListCommand.new(self).run
         end
-      when 'new'
+      when 'n', 'new'
         NewCommand.new(self).run
-      when 'complete'
+      when 'c', 'complete'
         CompleteCommand.new(self).run
-      when 'delete'
+      when 'd', 'delete', 'r', 'remove'
         DeleteCommand.new(self).run
       when '?', 'h', 'help'
         HelpCommand.new(self).run
