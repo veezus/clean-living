@@ -3,18 +3,24 @@ class NewCommand < BaseCommand
 
   def initialize interactor
     super
-    self.task = Task.new
+    self.task = Task.new name: interactor.arguments.join(' ')
   end
 
   def prompt_for_due_date
-    task.chronic_due = interactor.ask "When should it be done by?"
+    task.chronic_due = interactor.ask "When should that be done by?"
     if task.chronic_due.present? && task.due_at.blank?
       prompt_for_due_date
     end
   end
 
   def prompt_for_name
-    task.name = interactor.ask "What needs to be done?"
+    return unless task.name.blank?
+
+    task.name = interactor.ask "What's the todo?"
+  end
+
+  def echo_name
+    interactor.say "Creating task #{task.name}"
   end
 
   def print_error_message
@@ -37,6 +43,7 @@ class NewCommand < BaseCommand
 
   def run
     prompt_for_name
+    echo_name
     prompt_for_due_date
     save_and_print_status
   end
