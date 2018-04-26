@@ -49,6 +49,8 @@ class InteractorCommand
         CompleteCommand.new(self).run
       when 'delete'
         DeleteCommand.new(self).run
+      when '?', 'h', 'help'
+        HelpCommand.new(self).run
       when 'exit', 'quit', 'q'
         say 'Goodbye!' and break
       else
