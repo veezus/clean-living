@@ -40,6 +40,8 @@ class InteractorCommand
           CompletedListCommand.new(self).run
         elsif %w(i incomplete).include? arguments.first
           IncompleteListCommand.new(self).run
+        elsif %w(t today).include? arguments.first
+          TodaysList.new(self).run
         else
           ListCommand.new(self).run
         end
