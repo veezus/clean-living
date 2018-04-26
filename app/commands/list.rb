@@ -1,24 +1,12 @@
 class ListCommand < BaseCommand
   include Styles
-
-  attr_accessor :task
+  include ListRenderer
 
   def run
-    Task.all.each do |task|
-      self.task = task
-      interactor.buffer "#{completed} #{id} #{task.name}"
-    end
-  end
-
-  def completed
-    task.completed? ? pastel.green('✔') : ' '
-  end
-
-  def id
-    task.id.to_s.rjust tasks.last.id.to_s.length
+    interactor.buffer render.split "\n"
   end
 
   def tasks
-    Task.all
+    Task.all.order :due_at
   end
 end
