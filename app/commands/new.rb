@@ -3,10 +3,15 @@ class NewCommand < BaseCommand
 
   def initialize interactor
     super
-    self.task = Task.new name: interactor.arguments.join(' ')
+    parts = interactor.arguments.join(' ').split ','
+    name = parts.first
+    due_at = parts.last
+    self.task = Task.new name: name, chronic_due: due_at
   end
 
   def prompt_for_due_date
+    return unless task.chronic_due.blank?
+
     task.chronic_due = interactor.ask "When should that be done by?"
     if task.chronic_due.present? && task.due_at.blank?
       prompt_for_due_date
