@@ -10,6 +10,18 @@ class Task < ActiveRecord::Base
     self.due_at = Chronic.parse value
   end
 
+  def done?
+    completed? || skipped?
+  end
+
+  def skipped!
+    update_attribute :skipped_at, Time.now
+  end
+
+  def skipped?
+    !!skipped_at
+  end
+
   def completed!
     update_attribute :completed_at, Time.now
   end

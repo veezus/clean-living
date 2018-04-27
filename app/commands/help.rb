@@ -18,6 +18,8 @@ class HelpCommand < BaseCommand
       '                   Alias: d, r, rm, remove',
       'complete <id>      Mark task with the specifed ID or IDs as completed',
       '                   Alias: c',
+      'skip <id>          Mark task with the specifed ID or IDs as skipped',
+      '                   Alias: s',
     ]
   end
 

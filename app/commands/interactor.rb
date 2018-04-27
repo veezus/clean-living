@@ -49,6 +49,8 @@ class InteractorCommand
         NewCommand.new(self).run
       when 'c', 'complete'
         CompleteCommand.new(self).run
+      when 's', 'skip'
+        SkipCommand.new(self).run
       when 'd', 'delete', 'r', 'rm', 'remove'
         DeleteCommand.new(self).run
       when '?', 'h', 'help'
