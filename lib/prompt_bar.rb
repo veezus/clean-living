@@ -1,4 +1,4 @@
-class Prompt
+class PromptBar
   include TTY::Cursor
   include Screen
 

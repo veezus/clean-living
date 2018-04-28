@@ -4,7 +4,7 @@ class InteractorCommand
 
   def initialize
     self.output_window = OutputWindow.new
-    self.prompt = Prompt.new
+    self.prompt = PromptBar.new
     self.status_bar = StatusBar.new
   end
 
