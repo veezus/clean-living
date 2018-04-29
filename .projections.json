@@ -32,7 +32,7 @@
   "spec/spec_helper.rb": {
     "type": "spec"
   },
-  "lib/modules/*.rb": {
-    "type": "module"
+  "templates/*.rb": {
+    "type": "template"
   }
 }
