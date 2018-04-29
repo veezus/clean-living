@@ -5,8 +5,9 @@ class NewCommand < BaseCommand
     super
     parts = interactor.arguments.join(' ').split ','
     name = parts.first
-    due_at = parts.last
-    self.task = Task.new name: name, chronic_due: due_at
+    due_at = parts.second
+    tags = parts.third.split(' ')
+    self.task = Task.new name: name, chronic_due: due_at, tags: tags
   end
 
   def prompt_for_due_date

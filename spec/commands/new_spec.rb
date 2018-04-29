@@ -1,19 +1,20 @@
 describe NewCommand do
-  let(:command) { NewCommand.new(['Take out the papers and the trash']) }
+  let(:interactor) do
+    InteractorCommand.new.tap do |interactor|
+      interactor.command = 'new'
+      interactor.arguments = %w(Take out the papers and the trash, today, chores weekly-template)
+    end
+  end
+  let(:command) { NewCommand.new interactor }
+  let(:testing_at) { Time.local 2018, 04, 11, 15, 15, 50 }
 
   describe "#initialize" do
     it "builds a task with the specified name" do
-      expect(command.task.name).to eq 'Take out the papers and the trash'
-    end
-  end
-
-  describe "#print_error_messages" do
-    it "prints messages with the `say` command" do
-      allow(ErrorFormatter).to receive(:console).and_return "  * an error"
-      expect(HighLine).to receive(:color).with \
-        "There was an error saving that task:\n  * an error", :red
-
-      command.print_error_messages
+      Timecop.freeze(testing_at) do
+        expect(command.task.name).to eq 'Take out the papers and the trash'
+        expect(command.task.due_at.to_date).to eq Date.today
+        expect(command.task.tags).to eq %w(chores weekly-template)
+      end
     end
   end
 end

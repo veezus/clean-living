@@ -8,13 +8,13 @@ describe Task do
   end
 
   it "parses date strings" do
-    task.chronic_due = 'friday at noon'
     Timecop.freeze(testing_at) do
+      task.chronic_due = 'friday at noon'
       expect(task.due_at).to eq Time.local(2018, 04, 13, 12)
     end
   end
 
-  describe "#complete!" do
+  describe "#completed!" do
     it "updates the completed_at" do
       Timecop.freeze(testing_at) do
         task = create :task
@@ -23,6 +23,19 @@ describe Task do
         task.completed!
         expect(task).to be_completed
         expect(task.completed_at).to be_within(1.second).of(Time.now)
+      end
+    end
+  end
+
+  describe "#skip!" do
+    it "updates the skipped_at" do
+      Timecop.freeze(testing_at) do
+        task = create :task
+        expect(task.skipped_at).to be nil
+
+        task.skipped!
+        expect(task).to be_skipped
+        expect(task.skipped_at).to be_within(1.second).of(Time.now)
       end
     end
   end

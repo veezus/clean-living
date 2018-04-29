@@ -1,3 +1,4 @@
+ENV['RAILS_ENV'] = 'test'
 require './config/application.rb'
 
 root = File.dirname __FILE__

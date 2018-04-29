@@ -5,6 +5,8 @@ class Task < ActiveRecord::Base
 
   validates_presence_of :name
 
+  serialize :tags
+
   def chronic_due=(value)
     @chronic_due = value
     self.due_at = Chronic.parse value

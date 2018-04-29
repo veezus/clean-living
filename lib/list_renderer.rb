@@ -1,6 +1,6 @@
 module ListRenderer
   def headers
-    [pastel.green('✔'), 'Due', 'ID', 'Task']
+    [pastel.green('✔'), 'Due', 'ID', 'Task', 'Tags']
   end
 
   def format_completed task
@@ -35,10 +35,15 @@ module ListRenderer
     due_at.strftime "%a %b %d, %H:%M"
   end
 
+  def format_tags task
+    return '' if task.tags.blank?
+    task.tags.join ','
+  end
+
   def table
     return @table if defined? @table
     rows = tasks.map do |task|
-      [format_completed(task), format_due_at(task), task.id, task.name]
+      [format_completed(task), format_due_at(task), task.id, task.name, format_tags(task)]
     end
     @table ||= TTY::Table.new headers, rows
   end

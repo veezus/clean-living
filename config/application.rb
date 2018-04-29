@@ -1,4 +1,4 @@
-environment = ENV['CLEAN_LIVING_ENV'] || 'development'
+environment = ENV['RAILS_ENV'] || 'development'
 root = File.dirname __FILE__
 
 require 'bundler'
