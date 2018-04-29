@@ -1,18 +1,17 @@
 source 'https://rubygems.org'
 
-git_source(:github) {|repo_name| 'https://github.com/#{repo_name}' }
-
 # Database
 gem 'activerecord'
 gem 'sqlite3'
-gem 'standalone_migrations'
+gem 'standalone_migrations', git: 'https://github.com/thuss/standalone-migrations'
 
 # Time parsing
 gem 'chronic'
 
 # Command line tools
 gem 'commander'
-gem 'tty'
+gem 'tty', git: 'https://github.com/piotrmurach/tty'
+gem 'tty-reader'
 
 group :test, :development do
   gem 'byebug'
