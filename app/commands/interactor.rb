@@ -1,4 +1,6 @@
 class InteractorCommand
+  include TTY::Cursor
+
   attr_accessor :output_window, :prompt, :status_bar
   attr_accessor :command, :arguments
 
@@ -56,7 +58,9 @@ class InteractorCommand
       when '?', 'h', 'help'
         HelpCommand.new(self).run
       when 'exit', 'quit', 'q'
-        say 'Goodbye!' and break
+        print "\n"
+        print clear_line
+        say "Goodbye!" and break
       else
         say "Unknown command: #{command}"
       end
