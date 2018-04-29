@@ -1,10 +1,6 @@
 module ListRenderer
   def headers
-    ['ID', pastel.green('✔'), 'Due', 'Task']
-  end
-
-  def messages
-    %i(id completed? due_at name)
+    [pastel.green('✔'), 'Due', 'ID', 'Task']
   end
 
   def format_completed task
@@ -42,7 +38,7 @@ module ListRenderer
   def table
     return @table if defined? @table
     rows = tasks.map do |task|
-      [task.id, format_completed(task), format_due_at(task), task.name]
+      [format_completed(task), format_due_at(task), task.id, task.name]
     end
     @table ||= TTY::Table.new headers, rows
   end
