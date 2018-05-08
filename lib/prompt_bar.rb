@@ -34,6 +34,9 @@ class PromptBar
         refresh
       when ?\C-d
         return 'q'
+      when ?\C-c
+        self.current_command = ''
+        refresh
       else
         self.current_command += current_key
         print current_key
