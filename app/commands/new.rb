@@ -6,7 +6,7 @@ class NewCommand < BaseCommand
     parts = interactor.arguments.join(' ').split ','
     name = parts.first
     due_at = parts.second
-    tags = parts.third.split(' ')
+    tags = parts.third&.split(' ') || []
     self.task = Task.new name: name, chronic_due: due_at, tags: tags
   end
 
