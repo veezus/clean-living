@@ -12,7 +12,7 @@ class CleanLiving
   def run
     program :name, 'clean-living'
     program :version, '0.0.1'
-    program :description, 'Tracks activities related to clean living'
+    program :description, 'Tracks activities related to living clean'
 
     command '' do |c|
       c.syntax = 'cl'

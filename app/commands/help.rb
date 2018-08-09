@@ -13,6 +13,8 @@ class HelpCommand < BaseCommand
       'new                Create a new task',
       'new <name>         Create a new task with specified name',
       'new <name>, <due>  Create a new task with specified name and due date',
+      'new <name>, <due>, <tags>',
+      '                   Create a new task with specified name, due date, and tags',
       '                   Alias: n',
       'delete <id>        Delete task with the specified ID or IDs',
       '                   Alias: d, r, rm, remove',
